@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 09:40:24 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/20 11:55:48 by amerrouc         ###   ########.fr       */
+/*   Updated: 2018/12/20 12:20:04 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_flag	*set_flags(char *obj)
 					new->mod[1] = obj[i];
 				else
 					new->err = 1;
+				if (new->err)
+					new->conv = obj[++i];
 			}
 			else
 				new->conv = obj[i];

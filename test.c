@@ -92,19 +92,21 @@ int main(int	argc, char **argv)
 	char *ptr;
 	int	b;
 	t_flag	*t;
+	long long int	a;
 
+	a = (char) 130;
 /*	test(3, "abc", "def", "fgh");*/
 	/*printf("%d\n", nb_arg("%f"));
 	disp_base("slt %d\n");
 	printf("|\n");*/
 /*	padding("test", "%d");*/
-	t = set_flags(argv[1]);
+/*	t = set_flags(argv[1]);*/
 /*	b = 30000;
 	ptr = "tet";*/
-	printf("#.3s\n", "5123");
-	printf("test :%d\n", ft_isdigit('#'));
+	printf("%llu\n", a);
+/*	printf("test :%d\n", ft_isdigit('#'));
 	printf("alt\t:%d\npad\t:\'%c\'\nsign\t:%d\n", t->alt, t->pad, t->sign);
 	printf("min_len\t:%d\npre\t:%d\nconv\t:%c\n", t->min_len, t->pre, t->conv);
-	printf("mod\t:%s\nerr\t:%d\n", t->mod, t->err);
+	printf("mod\t:%s\nerr\t:%d\n", t->mod, t->err);*/
 	return 0;
 }
