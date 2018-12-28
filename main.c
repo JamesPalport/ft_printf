@@ -27,15 +27,6 @@ int		nb_arg(char *str)
 	return (count);
 }
 
-int	disp_ez(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != '%')
-		ft_putchar(str[i++]);
-	return (i);
-}
 
 void	put_ptr(void *ptr)
 {
@@ -69,6 +60,7 @@ int main(int	argc, char **argv)
 	int	b;
 	t_flag	*t;
 	long long int	a;
+	short int	c;
 
 //	ptr = "slt la mif";
 //	printf("%p\n0x%s", ptr, ui_long_hex(ptr, 0));
@@ -79,7 +71,7 @@ int main(int	argc, char **argv)
 	disp_base("slt %d\n");
 	printf("|\n");*/
 /*	padding("test", "%d");*/
-	t = set_flags(argv[1]);
+//	t = set_flags(argv[1]);
 //	printf("%s\n%10c", padd_str("t", *t), 't');
 //	printf("%s\n%.3c", pre_str("test", *t), 't');
 /*	b = 30000;
@@ -90,6 +82,8 @@ int main(int	argc, char **argv)
 	printf("min_len\t:%d\npre\t:%d\nconv\t:%c\n", t->min_len, t->pre, t->conv);
 	printf("mod\t:%s\nerr\t:%d\n", t->mod, t->err);*/
 	/*printf("%s\n%s\n%X", ui_hex(429496739, 1), ui_long_hex((unsigned int)429496739, 1), 429496739);*/
-	printf("%30lld\n% .30lld\n",LLONG_MAX, LLONG_MAX);
+	ptr = "Amine";
+	ft_printf("%025.20hd\n", SHRT_MAX + 2);
+	printf("%025.20hd\n", SHRT_MAX + 2);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 09:40:24 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/20 12:20:04 by amerrouc         ###   ########.fr       */
+/*   Updated: 2018/12/28 14:49:47 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_flag	*new_flags(void)
 	new->pre = -1;
 	new->mod[0] = 0;
 	new->mod[1] = 0;
+	new->mod[2] = 0;
 	new->conv = 0;
 	new->err = 0;
 	return (new);
