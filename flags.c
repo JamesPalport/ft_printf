@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 09:40:24 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/28 14:49:47 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/02 14:02:02 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ t_flag	*new_flags(void)
 
 	if ((new= (t_flag *)malloc(sizeof(t_flag))) == 0)
 		return ((t_flag *)0);
+	new->alt = 0;
 	new->pad = 0;
 	new->sign = 0;
 	new->min_len = -1;
@@ -39,13 +40,18 @@ t_flag	*set_flags(char *obj)
 	i = 0;
 	while (obj[i] && new->err == 0 && new->conv == 0)
 	{
-		if (ft_isdigit(obj[i]) && obj[i] != '0')
+		if (obj[i] == '.' && new->pre == -1)
 		{
-			if (obj[i - 1] == '.' && new->pre == -1)
-				new->pre = ft_atoi(obj + i);
-			else if (obj[i - 1] != '.')
+			i++;
+			new->pre = ft_atoi(obj + i);
+			while (ft_isdigit(obj[i + 1]))
+				i++;
+		}
+		if (ft_isdigit(obj[i]) && obj[i] != '0' && new->pre == -1)
+		{
+			if (new->min_len == -1)
 				new->min_len = ft_atoi(obj + i);
-			while (ft_isdigit(obj[i]))
+			while (ft_isdigit(obj[i + 1]))
 				i++;
 		}
 		if (new->min_len == -1 && new->pre == -1)
@@ -82,5 +88,9 @@ t_flag	*set_flags(char *obj)
 		}
 		i++;
 	}
+/*	if (new->pre != -1)
+		new->pre++;
+	if (new->min_len != -1)
+		new->min_len++;*/
 	return (new);
 }

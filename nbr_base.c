@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   util.c                                             :+:      :+:    :+:   */
+/*   nbr_base.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/28 11:49:12 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 13:17:16 by amerrouc         ###   ########.fr       */
+/*   Created: 2019/01/02 10:16:22 by amerrouc          #+#    #+#             */
+/*   Updated: 2019/01/02 10:22:23 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	lib_diff(char *str, char *tmp1, char *tmp2)
+int		nb_base_len(unsigned long long int nb, int size_base)
 {
-	if (tmp1 == tmp2)
+	double	i;
+	int		len;
+
+	i = 1;
+	len = 1;
+	while (i < nb)
 	{
-		if (tmp1 != str)
-			free(tmp1);
+		len++;
+		i *= size_base;
 	}
-	else
-	{
-		if (tmp1 != str)
-			free(tmp1);
-		if (tmp2 != str)
-			free(tmp2);
-	}
-	return (-1);
+	return (len);
 }
 
-int	len_flags(char *str, t_flag *flags)
+void	put_base(unsigned long long int nb, char *str, char *base)
 {
+	int	size_base;
 	int	i;
 
-	i = 0;
-	while (str[i] && str[i] != flags->conv)
-		i++;
-	return (i + 1);
+	size_base = ft_strlen(base);
+	if (nb >= size_base)
+		put_base(nb / size_base, str, base);
+	i = ft_strlen(str);
+	str[i] = base[nb % size_base];
 }

@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 10:38:53 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/28 15:35:12 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/02 12:49:16 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	disp_arg(char *str, int *count, va_list ap, t_fct *functions)
 	ch = chose_fct(flags);
 	if (ch == -1)
 		return (-1);
-	count += functions[ch](*flags, ap);
+	*count += functions[ch](*flags, ap);
 	return (len_flags(str, flags));
 }

@@ -6,10 +6,9 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 11:24:51 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/28 13:58:47 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/02 09:58:01 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "ft_printf.h"
 
@@ -23,9 +22,9 @@ t_fct	*init_functions(void)
 	functions[1] = &print_s;
 	functions[2] = &print_p;
 	functions[3] = &print_di;
-/*	functions[4] = &print_o;
+	functions[4] = &print_o;
 	functions[5] = &print_u;
-	functions[6] = &print_xX;
-	functions[7] = &print_f;*/
+	functions[6] = &print_hex;
+/*	functions[7] = &print_f;*/
 	return (functions);
 }

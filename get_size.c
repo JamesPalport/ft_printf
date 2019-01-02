@@ -6,13 +6,13 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 16:32:46 by amerrouc          #+#    #+#             */
-/*   Updated: 2018/12/28 16:37:18 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/02 12:41:17 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	get_int(va_list ap)
+int				get_int(va_list ap)
 {
 	int	nbr;
 
