@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/26 09:03:07 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 15:15:39 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 11:30:26 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	set_padd_char(char *padd, t_flag flags)
 {
 	padd[1] = '\0';
 	padd[0] = ' ';
-	if (flags.pad == '0' && (flags.conv == 's' || flags.pre == -1))
+	if (flags.pad == '0' && (flags.conv == 's' || flags.conv == 'c'
+				|| flags.pre == -1))
 		padd[0] = '0';
 }
 
@@ -39,7 +40,8 @@ void	apply_padd_str(char *out, const char *str, char *padd, t_flag flags)
 		while (i++ < flags.min_len - len)
 			ft_strlcat(out, padd, flags.min_len + 1);
 	}
-	if (!ft_isdigit(str[0]) && flags.conv != 's' && !ft_strcmp("0", padd))
+	if (!ft_isdigit(str[0]) && flags.conv != 's' && flags.conv != '%'
+				&& !ft_strcmp("0", padd))
 	{
 		out[0] = str[0];
 		out[i - 1] = '0';
@@ -127,12 +129,17 @@ char	*padd_hex(char *str, t_flag flags)
 			&& (flags.conv != 'p' && flags.alt != 1))
 		return (str);
 	set_padd_char(padd, flags);
-	if (flags.conv == 'X')
+	if (flags.conv == 'X' && ft_strlen(str) != 0)
 		base = "0X";
-	else if (flags.conv == 'x' || flags.conv == 'p')
+	else if ((flags.conv == 'x' && ft_strlen(str) != 0) || flags.conv == 'p')
 		base = "0x";
-	else
+	else if (flags.conv != 'x' && flags.conv != 'X')
 		base = "0";
+	else
+		base = "";
+	if (flags.conv != 'p'
+			&& (ft_strlen(str) == 1 && str[0] == '0'))
+		base = "";
 	if (flags.min_len == -1 || flags.min_len <= len)
 		flags.min_len = len + ft_strlen(base);
 	if ((out = ft_strnew(flags.min_len + 1)) == NULL)

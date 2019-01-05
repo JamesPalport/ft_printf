@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 10:45:53 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 11:12:24 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 11:05:18 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ui_long_hex(unsigned long long int nb, int b)
 		base = "0123456789ABCDEF";
 	else
 		base = "0123456789abcdef";
-	num = ft_strnew(nb_base_len(nb, 16));
+	num = ft_strnew(nb_base_len(nb, 16) + 1);
 	put_base(nb, num, base);
 	return (num);
 }
@@ -32,7 +32,7 @@ char	*ui_long_oct(unsigned long long int nb)
 	char	*base;
 
 	base = "01234567";
-	num = ft_strnew(nb_base_len(nb, 16));
+	num = ft_strnew(nb_base_len(nb, 16) + 1);
 	put_base(nb, num, base);
 	return (num);
 }

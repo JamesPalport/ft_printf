@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 11:49:12 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 13:17:16 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 12:40:02 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,14 @@ int	len_flags(char *str, t_flag *flags)
 	while (str[i] && str[i] != flags->conv)
 		i++;
 	return (i + 1);
+}
+
+int	skip_spc(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] == ' ')
+		i++;
+	return (i);
 }

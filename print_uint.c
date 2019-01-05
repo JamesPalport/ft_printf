@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 13:03:27 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 14:58:28 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 11:05:33 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,12 @@ int	print_o(t_flag flags, va_list ap)
 	char					*tmp2;
 	int						len;
 
+	if (flags.conv == 'O')
+	{
+		flags.mod[0] = 'l';
+		flags.mod[1] = '\0';
+		flags.conv = 'o';
+	}
 	nbr = va_arg(ap, unsigned long long int);
 	adj_uns_size(&nbr, flags);
 	if (!nbr && !flags.pre)
@@ -77,10 +83,16 @@ int	print_u(t_flag flags, va_list ap)
 	{
 		flags.mod[0] = 'l';
 		flags.mod[1] = '\0';
+		flags.conv = 'u';
 	}
 	nbr = va_arg(ap, unsigned long long int);
 	adj_uns_size(&nbr, flags);
-	if (!(tmp1 = ulli_str(nbr)))
+	if (!nbr && !flags.pre)
+	{
+		if ((tmp1 = ft_strnew(0)) == NULL)
+			return (-1);
+	}
+	else if(!(tmp1 = ulli_str(nbr)))
 		return (-1);
 	if (!(tmp1 = pre_hex(tmp1, flags)))
 		return (-1);

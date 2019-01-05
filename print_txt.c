@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 09:56:22 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 15:29:43 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 11:18:57 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,12 @@ int	print_p(t_flag flags, va_list ap)
 	int		len;
 
 	str = va_arg(ap, char *);
-	if (!(tmp1 = ui_long_hex((long int)str, 0)))
+	if (!str && !flags.pre)
+	{
+		if ((tmp1 = ft_strnew(0)) == NULL)
+			return (-1);
+	}
+	else if (!(tmp1 = ui_long_hex((long int)str, 0)))
 		return (-1);
 	if (!(tmp1 = pre_hex(tmp1, flags)))
 		return (-1);

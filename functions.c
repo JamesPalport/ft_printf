@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 11:24:51 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 09:58:01 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 09:24:44 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_fct	*init_functions(void)
 {
 	t_fct	*functions;
 
-	if (!(functions = (t_fct *)malloc(sizeof(t_fct) * 8)))
+	if (!(functions = (t_fct *)malloc(sizeof(t_fct) * 9)))
 		return (NULL);
 	functions[0] = &print_c;
 	functions[1] = &print_s;
@@ -26,5 +26,6 @@ t_fct	*init_functions(void)
 	functions[5] = &print_u;
 	functions[6] = &print_hex;
 /*	functions[7] = &print_f;*/
+	functions[8] = &print_prct;
 	return (functions);
 }

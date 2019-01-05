@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/20 09:40:24 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/02 14:02:02 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/05 09:20:01 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ t_flag	*set_flags(char *obj)
 		else if (obj[i] == '#' || obj[i] == '+'
 				|| obj[i] == ' ' || obj[i] == '-' || obj[i] == '%')
 			new->err = 1;
-		if (ft_isalpha(obj[i]))
+		if (ft_isalpha(obj[i]) || obj[i] == '%')
 		{
 			if (obj[i] == 'l' || obj[i] == 'h' || obj[i] == 'L')
 			{
@@ -88,9 +88,5 @@ t_flag	*set_flags(char *obj)
 		}
 		i++;
 	}
-/*	if (new->pre != -1)
-		new->pre++;
-	if (new->min_len != -1)
-		new->min_len++;*/
 	return (new);
 }
