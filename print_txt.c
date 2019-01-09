@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/02 09:56:22 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/05 11:18:57 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:15:45 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ int	print_c(t_flag flags, va_list ap)
 	if (flags.pad == 0 || flags.pad == '0')
 	{
 		while (len++ < flags.min_len - 1)
-			ft_putchar(padd[0]);
-		ft_putchar(c);
+			ft_putchar_fd(padd[0], flags.fd);
+		ft_putchar_fd(c, flags.fd);
 	}
 	else
 	{
-		ft_putchar(c);
+		ft_putchar_fd(c, flags.fd);
 		while (len++ < flags.min_len - 1)
-			ft_putchar(padd[0]);
+			ft_putchar_fd(padd[0], flags.fd);
 	}
 	return (len);
 }
@@ -52,7 +52,7 @@ int	print_s(t_flag flags, va_list ap)
 		return (-1);
 	if (!(tmp2 = padd_str(tmp1, flags)))
 		return (lib_diff(str, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
 	lib_diff(str, tmp1, tmp2);
 	return (len);
@@ -77,7 +77,7 @@ int	print_p(t_flag flags, va_list ap)
 		return (-1);
 	if (!(tmp2 = padd_hex(tmp1, flags)))
 		return (lib_diff(str, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
 	lib_diff(str, tmp1, tmp2);
 	return (len);

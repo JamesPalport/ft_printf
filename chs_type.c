@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 10:52:00 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/05 11:34:52 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/07 16:04:16 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int				chose_fct(t_flag *flags)
 		return (1);
 	if (c == 'p')
 		return (2);
-	if (c == 'd' || c == 'i')
+	if (c == 'd' || c == 'i' || c == 'D')
 		return (3);
 	if (c == 'o' || c == 'O')
 		return (4);
@@ -31,11 +31,9 @@ int				chose_fct(t_flag *flags)
 		return (5);
 	if (c == 'x' || c == 'X')
 		return (6);
-	if (c == '%')
-		return (8);
-	if (c == '\0')
-		return (-2);
-	return (-1);
+	if (c == 'f' || c == 'F')
+		return (7);
+	return (8);
 }
 
 void			adj_size(long long int *nbr, t_flag flags)
@@ -64,4 +62,27 @@ void			adj_uns_size(unsigned long long int *nbr, t_flag flags)
 		*nbr = (unsigned char)*nbr;
 	else
 		*nbr = (unsigned int)*nbr;
+}
+
+void			adj_prec(long double *nbr, t_flag *flags)
+{
+	long double	tmp;
+	long double	dec;
+	double		pow;
+	int			i;
+	double		sign;
+
+	i = 0;
+	pow = 1.0;
+	sign = (*nbr >= 0) ? 1.0 : -1.0;
+	if (flags->pre == -1)
+		flags->pre = 6;
+	while (i++ < flags->pre)
+		pow *= 10;
+	tmp = (*nbr >= 0) ? *nbr : -*nbr;
+	tmp -= (unsigned long long int)tmp;
+	dec = (tmp * pow) - (unsigned long long int)(tmp * pow);
+	dec -= (unsigned long long int)dec;
+	if (dec >= 0.5)
+		*nbr += sign / (pow);
 }

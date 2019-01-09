@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/29 13:03:27 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/05 11:05:33 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:16:30 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ int	print_hex(t_flag flags, va_list ap)
 		return (-1);
 	if (!(tmp2 = padd_hex(tmp1, flags)))
 		return (lib_diff(tmp2, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
-	lib_diff(tmp1, tmp1, tmp2);
+	lib_diff(NULL, tmp1, tmp2);
 	return (len);
 }
 
@@ -46,19 +46,10 @@ int	print_o(t_flag flags, va_list ap)
 	int						len;
 
 	if (flags.conv == 'O')
-	{
-		flags.mod[0] = 'l';
-		flags.mod[1] = '\0';
-		flags.conv = 'o';
-	}
+		cap_conv(&flags);
 	nbr = va_arg(ap, unsigned long long int);
 	adj_uns_size(&nbr, flags);
-	if (!nbr && !flags.pre)
-	{
-		if ((tmp1 = ft_strnew(0)) == NULL)
-			return (-1);
-	}
-	else if (!(tmp1 = ui_long_oct(nbr)))
+	if (!(tmp1 = ui_long_oct(nbr, flags)))
 		return (-1);
 	if (flags.pre > (int)ft_strlen(tmp1))
 		flags.alt = 0;
@@ -66,9 +57,9 @@ int	print_o(t_flag flags, va_list ap)
 		return (-1);
 	if (!(tmp2 = padd_hex(tmp1, flags)))
 		return (lib_diff(tmp2, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
-	lib_diff(tmp1, tmp1, tmp2);
+	lib_diff(NULL, tmp1, tmp2);
 	return (len);
 }
 
@@ -80,11 +71,7 @@ int	print_u(t_flag flags, va_list ap)
 	int						len;
 
 	if (flags.conv == 'U')
-	{
-		flags.mod[0] = 'l';
-		flags.mod[1] = '\0';
-		flags.conv = 'u';
-	}
+		cap_conv(&flags);
 	nbr = va_arg(ap, unsigned long long int);
 	adj_uns_size(&nbr, flags);
 	if (!nbr && !flags.pre)
@@ -92,14 +79,14 @@ int	print_u(t_flag flags, va_list ap)
 		if ((tmp1 = ft_strnew(0)) == NULL)
 			return (-1);
 	}
-	else if(!(tmp1 = ulli_str(nbr)))
+	else if (!(tmp1 = ulli_str(nbr)))
 		return (-1);
 	if (!(tmp1 = pre_hex(tmp1, flags)))
 		return (-1);
 	if (!(tmp2 = padd_str(tmp1, flags)))
 		return (lib_diff(tmp2, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
-	lib_diff(tmp1, tmp1, tmp2);
+	lib_diff(NULL, tmp1, tmp2);
 	return (len);
 }

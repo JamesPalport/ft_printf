@@ -6,7 +6,7 @@
 /*   By: amerrouc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/28 14:00:32 by amerrouc          #+#    #+#             */
-/*   Updated: 2019/01/05 10:04:03 by amerrouc         ###   ########.fr       */
+/*   Updated: 2019/01/09 11:12:40 by amerrouc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	print_di(t_flag flags, va_list ap)
 	char			*tmp2;
 	int				len;
 
+	if (flags.conv == 'D')
+		cap_conv(&flags);
 	nbr = va_arg(ap, long long int);
 	adj_size(&nbr, flags);
 	if (!nbr && flags.pre == 0)
@@ -29,8 +31,8 @@ int	print_di(t_flag flags, va_list ap)
 		return (-1);
 	if (!(tmp2 = padd_str(tmp1, flags)))
 		return (lib_diff(tmp2, tmp1, tmp2));
-	ft_putstr(tmp2);
+	ft_putstr_fd(tmp2, flags.fd);
 	len = ft_strlen(tmp2);
-	lib_diff(tmp1, tmp1, tmp2);
+	lib_diff(NULL, tmp1, tmp2);
 	return (len);
 }
